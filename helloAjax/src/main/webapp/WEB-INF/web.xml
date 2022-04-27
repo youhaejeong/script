@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>helloAjax</display-name>
+	
+	<servlet>
+	<servlet-name>myServlet</servlet-name>
+	<servlet-class>co.edu.servlet.Info</servlet-class>
+	
+	<!-- 만든것을 서버페이지에서 연는 과정을 위해 한 것 -->
+	
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>myServlet</servlet-name>
+	<url-pattern>/home/intro.do</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/get.html</title>
+</head>
+<body>
+<div id="show"></div>
+	<script>
+		//서버에 파일을 요청하고 읽어드리도록
+		let xhtp = new XMLHttpRequest(); //new String();
+		xhtp.open("get", "../studentList.json"); //어떤페이지를 호출할지 지정
+		xhtp.send(); //호출 시작 
+		xhtp.onload = function() { //이벤트가 실행되면 function을 실행하십시오
+			let data =JSON.parse(xhtp.response);
+			console.log(data)
+			//document.getElementById('show').innerHTML =xhtp.response;
+		};
+	</script>
+</body>
+</html>
