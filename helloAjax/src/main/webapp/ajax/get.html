@@ -5,18 +5,57 @@
 <title>ajax/get.html</title>
 </head>
 <body>
-<div id="show"></div>
+	<div id="show">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>학생번호</th>
+					<th>학생이름</th>
+					<th>영어</th>
+					<th>국어</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+			<tr><td>101</td><td>홍길동</td><td>90</td><td>90</td></tr>
+			</tbody>
+		</table>
+	</div>
 	<script>
 		//서버에 파일을 요청하고 읽어드리도록
 		let xhtp = new XMLHttpRequest(); //new String();
 		xhtp.open("get", "../studentList.json"); //어떤페이지를 호출할지 지정
 		xhtp.send(); //호출 시작 
 		xhtp.onload = function() { //이벤트가 실행되면 function을 실행하십시오
-			let data =JSON.parse(xhtp.response);
+			let data = JSON.parse(xhtp.response); //[{},{},{}]
 			console.log(data)
+			data.forEach(function(elem,idx,ary){
+				document.getElementById('list').appendChild(makeTr(elem))
+			})
+				
+			
+				
+			
+
 			//document.getElementById('show').innerHTML =xhtp.response;
+//<<<<<<< HEAD
 			//document.getElementId('list')
+//=======
+
+		
+//>>>>>>> branch 'master' of https://github.com/youhaejeong/script.git
 		};
+		function makeTr(student) {
+			let tr = document.createElement('tr');
+
+			for (let field in student){
+				let td = document.createElement('td');
+				td.innerHTML = student[field];
+				tr.appendChild(td);
+			//	console.log(makeTr)
+			}
+			return tr;
+
+		}
 	</script>
 </body>
 </html>

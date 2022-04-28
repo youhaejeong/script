@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/post.html</title>
+</head>
+<body>
+	<div id=addFrm>
+		<form action="addStudentServlet" onsubmit="addStudent(event)">
+			<!-- on 은 언제 실행되겠습니다 하는 접두어? -->
+			학생번호: <input type="number" name="sno" value="101"><br>
+			학생이름: <input type="text" name="sname" value="유해정"><br>
+			영어: <input type="number" name="eScore" value="80"><br>
+			국어: <input type="number" name="kScore" value="85"><br>
+			 <input type="submit" value="전송">
+			 <input type="button" value="변경">
+
+		</form>
+
+	</div>
+	<div id="studentList">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>학생번호</th>
+					<th>학생이름</th>
+					<th>영어</th>
+					<th>국어</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody id="list">
+
+			</tbody>
+		</table>
+	</div>
+
+	<script src="post.js"></script>
+</body>
+</html>
