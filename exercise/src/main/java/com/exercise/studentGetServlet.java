@@ -20,9 +20,12 @@ public class studentGetServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 	
 	}
