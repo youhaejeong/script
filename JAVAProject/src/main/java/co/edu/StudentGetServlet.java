@@ -40,22 +40,22 @@ public class StudentGetServlet extends HttpServlet {
 				response.getWriter().println("<form action='StudentGetServlet' method='post'>");
 				response.getWriter().println("<h3>학생번호: " + student.getStudentNo() + "</h3>");
 				response.getWriter().println("<h3>이름 : " + student.getStudentName() + "</h3>");
+				response.getWriter().println(
+						"<h3>영어:<input type='number' name='eng_score' value='" + student.getEngScore() + "'> </h3>");
+				response.getWriter().println(
+						"<h3>국어: <input type='number' name='kor_score' value='" + student.getKorScore() + "'> </h3>");
+				response.getWriter().println("<input type='hidden' name='cmd' value='mod'>");
 				response.getWriter()
-						.println("<h3>영어:<input type='number' value='" + student.getEngScore() + "'> </h3>");
+						.println("<input type='hidden' name='user_id' value=" + student.getStudentNo() + ">");
 				response.getWriter()
-						.println("<h3>국어: <input type='number' value='" + student.getKorScore() + "'> </h3>");
-				response.getWriter()
-						.println("<input type='hidden' name='user_id' value='" + student.getStudentNo() + "'>");
-				response.getWriter()
-						.println("<input type='hidden' name='user_name' value='" + student.getStudentName() + "'>");
-
-				response.getWriter().println("<input type='submit' id='mod' value='수정'");
+						.println("<input type='hidden' name='user_name' value="+ student.getStudentName()+">");
+				response.getWriter().println("<input type='submit' id='mod' value='수정'>");
 				response.getWriter().println("</form>");
 			} else {
 				response.getWriter().println("<h3>조회된 데이터가 없습니다</h3>");
 			}
 
-			//response.getWriter().println("mod.addEventListener('click',function(){}");
+			// response.getWriter().println("mod.addEventListener('click',function(){}");
 			response.getWriter().println("<a href='studentList.jsp'>목록으로</a>");
 
 		} else if (cmd != null && cmd.equals("add")) {

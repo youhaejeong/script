@@ -3,8 +3,8 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
-	<display-name>JAVAProject</display-name>
-<!-- 굉장히 중요 틀리면 안딤  -->
+	<display-name>exercise</display-name>
+
 	<servlet>
 		<servlet-name>studentServlet</servlet-name>
 		<servlet-class>co.edu.StudentServlet</servlet-class>
@@ -12,13 +12,10 @@
 	<servlet-mapping>
 		<servlet-name>studentServlet</servlet-name>
 		<url-pattern>/student.do</url-pattern>
-		<!-- *는 어떤형태의 주소가 와도 주소를 싱핼 단 끝나느 주소가 .do여야 함  -->
 	</servlet-mapping>
-
-
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 
 	</welcome-file-list>
 </web-app>
