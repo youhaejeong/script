@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/fetch.html</title>
+</head>
+<body>
+	<button id="Delete">선택삭제</button>
+	<button id=allselect>전체선택</button>
+	<table border='1'>
+		<tr>
+			<td><input type='checkbox'></td>
+			<td>해정입니다 안녕하세요</td>
+		</tr>
+		<tr>
+			<td><input type='checkbox'></td>
+			<td>니들이 게맛을 알아</td>
+		</tr>
+		<tr>
+			<td><input type='checkbox'></td>
+			<td>새우깡이 조아~!~!~!~!~!</td>
+		</tr>
+	</table>
+	<script>
+		let allTr = document.querySelectorAll('tr');
+		let btn = document.getElementById('Delete');
+		btn.addEventListener('click', function() {
+			allTr.forEach(function(tr) {
+				if (tr.firstElementChild.firstElementChild.checked == true) {
+					tr.remove();
+				}
+
+			})
+		})
+		let allBtn = document.getElementById('allselect');
+		allBtn.addEventListener('click', function() {
+			allTr.forEach(function(tr) {
+				tr.firstElementChild.firstElementChild.checked = true
+
+			})
+		})
+
+		//if (document.querySeletor('input[type=checkbox]').length > 0) {
+		//for (let i = 0; i < document.querySeletor('input[type=checkbox]').length; i++) {
+		//if (document.querySeletor('input[type=checkbox]')[i].checked == true) {
+		//del = true;
+		//	break;
+
+		//}
+		//}
+		//}
+
+		//DelCheck.function(){
+		//	let allTr = document.querySeletorAll('input[type=checkbox]');
+		//	if(allTr.cheked ==true){
+		//		for(let i=0; i<DelCheck.length; i++){
+		//			allTr[i].checked =true;
+		//		}
+		//	}	
+		//	};
+
+		//	btn.addEventListener('click',function(){
+
+		//	let allTr = document.querySeletor('table tr');//Table 하위에 있는tr 다 가져오도록 
+		//	allTr.forEach(function(tr) {
+		//	if(tr.firstElementChild.firstElementChild.checked == true){
+		//		return tr.remove();
+		//	}else if(tr.firstElementChild.firstElementChild.checked == false){
+
+		//	}
+		//	tr.firstElementChild.firstElementChild.checked == true => tr.remove();
+		//document.querySeletor('table tr').firstElementChild.firstElementChild.getAttrobute('checked')
+		//	})
+		//})
+	</script>
+</body>
+</html>

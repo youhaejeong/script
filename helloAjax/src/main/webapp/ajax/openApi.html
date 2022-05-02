@@ -5,15 +5,164 @@
 <title>openApi.html</title>
 </head>
 <body>
-<script>
-let url=`https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=2p1PtbyxGJFHn4EdmT1if6w27uJ5GoS2I9WbRYQOfy6pVOQs05DKM7%2BjF0gSHRsquoiOnnVT78T4Mtp08jpP0Q%3D%3D`;
-let xhtp = new XMLHttpRequest();
-xhtp.open('get',url);
-xhtp.send();
-xhtp.onload =function(){
-	let data = JSON.parse(xhtp.responseText);
-	console.log(data);
-}
-</script>
+	<input type="text" id="sido" value="대전광역시">
+	<button id="findBtn">찾기</button>
+	<div id="show">
+		<table border="1">
+			<thead id="thead"></thead>
+			<tbody id="tbody"></tbody>
+		</table>
+	</div>
+	<script>
+		console.log('start');
+		let fields = [ 'id', 'sido', 'address','facilityName', 'phoneNumber', 'zipCode' ];
+		//this.
+		let obj = {
+			name : 'hong',
+			age : 20,
+			showInfo : function() {
+				return this.name + ', ' + this.age; //자기자신을 가르킴
+			}
+
+		}
+
+		function globalFnc() {
+			console.log(this); //window 객체
+		}
+		globalFnc();
+
+		function init() {
+			let url = `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=2p1PtbyxGJFHn4EdmT1if6w27uJ5GoS2I9WbRYQOfy6pVOQs05DKM7%2BjF0gSHRsquoiOnnVT78T4Mtp08jpP0Q%3D%3D`;
+			//비동기처기 방식으로 하는 대표적 (Asychronous Javascript And Xml)
+
+			let result = '';
+			let xhtp = new XMLHttpRequest();
+			xhtp.open('get', url);
+			xhtp.send();
+			xhtp.onload = loadCallBack;
+			let findBtn = document.getElementById("findBtn");
+			findBtn.addEventListener('click', findCallBack);
+			//() => {} 화살표함수를 사용하면 window객체가 나옴 
+			//{
+			//본래위치 console.log('center'); //서버에서 처리하는것을 받아오고 그다음에 처리 
+			//data = JSON.parse(xhtp.responseText);
+			//console.log(data);
+
+			//console.log("총건수: " + data.totalCount); //실행하는 순서 주의 바깥에 있으면 언디파인이 됨 
+			//}
+			//console.log("총건수: " + data.totalCount); //위 의 같은 정보와 비교군
+			console.log('end'); //시작 중간 끝으로 보면 안됨 
+			//요청은 먼저 들어갔어도 로딩 시간이 오래걸리면 덜걸리는것부터 실행
+			//서버에 요청해서 시간이 걸리면 나중에 받아와서 처리하면되서 엔드라는 것을 먼저 처리
+			//블럭안에서 선언하면 블럭안에서만 유효 블럭이 끝나면 변수가 사라짐
+
+		}
+		init();
+
+		function findCallBack() {
+			console.log(this);
+			//기능 구현 input.value 속성을 읽어와서 filterAry => 헤더, 바디
+			let searchSido = document.getElementById("sido").value;
+
+			let filterAry = result.data.filter(function(elem) {
+				return elem.sido.indexOf(searchSido) != -1; //포함 글자 일부만으로 검색  
+				//return elem.sido.startsWith(searchSido); //startsWith(문자)
+
+				//return elem.sido == searchSido;
+			});
+
+			//body
+			makeBody(filterAry);
+			//입력값을 지우는 초기화
+			document.getElementById("sido").value = '';
+
+		}//end of findCallBack()
+
+		function loadCallBack() {
+			console.log('center'); //서버에서 처리하는것을 받아오고 그다음에 처리 
+			result = JSON.parse(this.responseText);
+			console.log(result);
+			console.log("총건수: " + result.totalCount);
+
+			console.log(result.data[0]); //배열이기때문에 foreach를 사용함 
+
+			result.data.forEach(function(elem) {
+				if (elem.sido == '서울특별시')
+					console.log(`id: ${elem.id},center: ${elem.centerName}`);
+			});
+			//console.clear();
+
+			//{totalCount,data,..}
+			let filterAry = result.data.filter(function(elem) {
+				return elem.sido == '대전광역시';
+			});
+			console.log(filterAry);
+
+			let gangwon = result.data.filter(function(elem) {
+				return elem.sido == '강원도';
+			})
+
+			//head
+			//티헤드 태그에 로우를 만들어서 붙여넣기합니다. 필드의 갯구만큼 돌면서 필드를 만듦
+			let head = document.getElementById('thead');
+			let tr = document.createElement('tr');
+			head.appendChild(tr);
+			fields.forEach(function(elem) {
+				let td = document.createElement('th');
+				td.innerHTML = elem.toUpperCase();
+				tr.appendChild(td);
+			});
+
+			makeBody(filterAry); //함수를 공유할려면 매개값으로 할수밖에 없음 
+		}//end of loadCallBack()
+
+		function makeBody(ary) {
+			let body = document.getElementById('tbody');
+			//이미 생성된 조회정보가 있으면 삭제
+			let childTr = document.querySelectorAll('#tbody>tr'); //아이디 가져올떄 #
+			childTr.forEach(function(elem) {
+				//elem.remove(); //찾아온 tr을 삭제  //뭐를 기준으로 지우겠음 
+				body.removeChild(elem); //부모요소 반드시 필요 /부모를 기준으로 지우겠음 
+			})
+			//body
+
+			ary
+					.forEach(function(center) {
+						let tr = document.createElement('tr');
+						body.appendChild(tr);
+
+						fields
+								.forEach(function(elem) {
+									let td = document.createElement('td');
+									//address 필드일 경우 링크
+									if (elem == 'address') {
+										let aTag = document.createElement('a');
+										aTag
+												.setAttribute('href',
+														`daumApp.html?x=${center.lat}&y=${center.lng}&z=${center.facilityName}`);
+										aTag.setAttribute('target', '_blank');
+										aTag.innerHTML = center[elem];
+										td.appendChild(aTag);
+									} else {
+										td.innerHTML = center[elem];
+									}
+									tr.appendChild(td);
+								});
+
+					});
+
+			//let list = document.createElement('tbody');
+			//gangwon.forEach(function(elem) {
+			//	let tr = document.createElement('tr');
+			//	list.appendChild(tr);
+
+			//	fields.forEach(function(center) {
+			//	let td = document.createElement('td');
+			//	td.innerHTML = elem[center];
+			//	tr.appendChild(td);
+			//	});
+			//});
+		} //end of makeBody()
+	</script>
 </body>
 </html>

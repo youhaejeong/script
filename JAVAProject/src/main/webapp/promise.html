@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise.html</title>
+</head>
+
+<body>
+
+    <script>
+        //ajax 비동기방식 => XMLHttpRequest(); 하면
+        // 중첩 코드 ->1 -> 2 -> 3 ;
+        //란 뜻은 callback1(
+        //            callback2(
+        //               callback3();
+        //     );
+        // );
+
+        //promise 형식은 
+        //callback1();
+        //callback2();
+        //callback3();
+        // 이형식보다는 아래의 댄 형식이 더 좋음 
+        // setTimeout(function () {
+        //     console.log('func1');
+        //     setTimeout(function () {
+        //         console.log('func2')
+        //         setTimeout(function () {
+        //             console.log('func3')
+        //         }, 3000);
+        //     }, 2000);
+        // }, 1000);
+
+
+
+        //primise 객체                함수정의문|함수정의문
+        let val = 4;
+        let prom = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                if (val > 0) {
+                    resolve('success');
+                    val -= 2;
+                } else
+                    reject('error');
+            }, 2000);
+
+        });
+        //promise는 어떤 함수를 호출하냐에따라서 then 과 catch중 하나가 호출됨 
+        //반드시 뭘 어떻게 하겟다라고 하는 것 
+
+        prom
+            .then(function (result) {
+                console.log(result)
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        if (val > 0) {
+                            resolve('success');
+                            val -= 2;
+                        } else
+                            reject('error');
+                    }, 2000);
+                });
+            }) //매개값이 함수임
+            .then(function (result) {
+                console.log(result);
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        if (val > 0) {
+                            resolve('success');
+                            val -= 2;
+                        } else
+                            reject('error');
+                    }, 2000);
+                });
+            })
+            .catch(function (reject) {
+                console.log(reject);
+            });
+    </script>
+</body>
+
+</html>

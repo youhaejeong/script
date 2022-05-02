@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src=ajax2.js></script>
+</head>
+<body>
+	<script>
+		//Ajax=XMLHttpRequest: => fetch();
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../studentList.json');
+		xhtp.send();
+		xhtp.onload = function() {
+			console.log('xmlhttprequest');
+			console.log(xhtp.responseText)
+			
+			let xhtp2 =new XMOLHttpeauest();
+			xhtp2.onload =function(){
+				
+			}
+		}
+		
+		fetch('../studentList.json')
+		//성공하면 덴 
+		 	.then(function(result){
+		 		let val=result.json(); //stream -> json(),text()
+		 		return val;
+		 	})
+		 	.then(function(result){
+		 		console.log(result)
+		 	})
+		 	//실패하면 캐치
+		 	.catch(function(error){
+		 		console.log(error);
+		 	})
+	</script>
+</body>
+</html>
