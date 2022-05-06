@@ -17,7 +17,6 @@ public class MemberListJson implements Control {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/json;charset=UTF-8");
 
 		MemberService service = new MemberService();

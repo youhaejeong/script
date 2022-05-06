@@ -44,7 +44,7 @@ public class MemberInsertControl implements Control {
 
 		request.setAttribute("id", id);
 		request.setAttribute("name", nm);
-		// Dispatcher 객체 forword
+		// Dispatcher 객체 forword.
 		request.getRequestDispatcher("memberResult/memberInsertOutput.jsp").forward(request, response);
 	}
 
