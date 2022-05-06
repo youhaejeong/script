@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax.html</title>
+</head>
+<body>
+	<h3>Ajax 호출 (Single Page Application)</h3>
+	<form action="../memberInsertJson.do" method="post"
+		enctype="multipart/form-data">
+		아이디:<input type="text" name="id"><br> 비밀번호: <input
+			type="password" name="passwd"><br> 이름: <input
+			type="text" name="name"><br> 이메일: <input type="email"
+			name="email"><br> 이미지 : <input type="file"
+			name="profile"><br> <input type="submit" value="추가">
+	</form>
+
+	<table border='1'>
+		<thead>
+
+			<th>아이디</th>
+			<th>회원이름</th>
+			<th>이메일</th>
+			<th>비밀번호</th>
+			<th>이미지</th>
+
+		</thead>
+		<tbody id="list">
+
+
+		</tbody>
+	</table>
+	<script>
+	function makeTr(member = {}){
+		let tr = document.createElement('tr');
+		for(let field in member){
+			let td = document.createElement('td');
+			td.innerHTML = member[field];
+			tr.append(td);
+			
+		}
+		return tr;
+	}
+	
+	function init(){
+		//디비으 정보를 읽어와서 서버에서 회원리스트 => 화면출력
+		let ajax = new XMLHttpRequest();
+		
+		fetch('memberListJson.do')
+			.then(result => result.json())
+			.then(result1 => console.log(result1))
+			.catch(error => console.log(error));
+	}
+	</script>
+</body>
+</html>

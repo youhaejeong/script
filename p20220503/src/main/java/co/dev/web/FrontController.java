@@ -23,6 +23,9 @@ public class FrontController extends HttpServlet {
 		list.put("/memberList.do", new MemberListControl());
 		list.put("/memberSearch.do", new MemberSearchControl());
 		list.put("/memberDelete.do", new MemberDeleteControl());
+
+		// 이 아래부터는 json관련 등록
+		list.put("memberListJson.do", new MemberListJson());
 	}
 
 	@Override
