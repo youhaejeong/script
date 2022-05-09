@@ -142,7 +142,7 @@ input {
 	</ul>
 
 	<script>
-// Create a "close" button and append it to each list item
+
 document.addEventListener('DOMContentLoaded',function(){
 	let loadData=[];
 	fetch('toDoListServlet')
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded',function(){
 				let obj={title:toDo.title};
 				loadData.push(obj);
 			})
-				
+	// Create a "close" button and append it to each list item			
 	var myNodelist = document.getElementsByTagName("LI");
 	var i;
 	for (i = 0; i < myNodelist.length; i++) {
@@ -167,6 +167,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	// Click on a close button to hide the current list item
 	var close = document.getElementsByClassName("close");
 	var i;
+	
 	for (i = 0; i < close.length; i++) {
 	  close[i].onclick = function() {
 	    var div = this.parentElement;
@@ -197,7 +198,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		  })
 		  	.then(resutlt =>{
 		  		// 화면구현
-		  		inputValue.addEvent({
+		  		myInput.addEvent({
 		  			title:title
 		  		});
 		  	})
