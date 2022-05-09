@@ -10,17 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/studentGetServlet")
 public class studentGetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public studentGetServlet() {
-        super();
-    }
 
-    
-    
+	public studentGetServlet() {
+		super();
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		
+		String cmd=request.getParameter("cmd");
+		
+		if(cmd != null && cmd.equals("search")) {
+			String id =request.getParameter("user_id");
+		}
 		
 		
 		
@@ -30,9 +34,8 @@ public class studentGetServlet extends HttpServlet {
 	
 	}
 
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
