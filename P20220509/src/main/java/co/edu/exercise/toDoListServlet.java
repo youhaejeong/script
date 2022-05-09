@@ -22,7 +22,6 @@ public class toDoListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	//전체조회
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/json; charset=utf-8");

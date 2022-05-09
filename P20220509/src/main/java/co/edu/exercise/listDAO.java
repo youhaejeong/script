@@ -15,7 +15,7 @@ public class listDAO {
 	
 	//리스트
 	public List<listVO> getList(){
-		String sql ="select * from toDoList";
+		String sql ="select * from todolist";
 		getconnect();
 		List<listVO> list = new ArrayList<>();
 		try {

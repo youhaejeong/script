@@ -145,7 +145,7 @@ input {
 // Create a "close" button and append it to each list item
 document.addEventListener('DOMContentLoaded',function(){
 	let loadData=[];
-	fetch('./toDoListServlet')
+	fetch('toDoListServlet')
 		.then(result =>result.json())
 		.then(json=>{
 			console.log(json);
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	  var t = document.createTextNode(inputValue);
 	  li.appendChild(t);
 	  if(title){
-		  fetch('./toDoListServlet',{
+		  fetch('toDoListServlet',{
 			  method: 'post',
 			  headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			  body:`job=insert&title=${title}`
