@@ -29,7 +29,7 @@ public class FullCalendarServlet extends HttpServlet {
 		FullDAO dao = new FullDAO();
 		List<FullVO> list = dao.getList();
 
-		Gson gson = new GsonBuilder().create();
+		Gson gson=new GsonBuilder().create();
 		response.getWriter().print(gson.toJson(list)); // json 타입 생성
 
 	}

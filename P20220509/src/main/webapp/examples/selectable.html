@@ -61,11 +61,12 @@
                         },
                         eventClick: function (arg) {
                             if (confirm('삭제하시겠습니까??')) {
+                        
                             	//서블릿을 활용 db 삭제
                             fetch('../FullCalendarServlet',{
                             	method: 'post',
                             	headers :{'Content-Type': 'application/x-www-form-urlencoded'},
-                            	body:'job=delete&title=title'
+                            	body:`job=delete&title=${arg.event._def.title}`
                             })
                            .then(result=>{
                         	   //화면구현기능
