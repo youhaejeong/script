@@ -17,5 +17,6 @@
 	<input type="submit" value="추가">
 	
 	</form>
+	<jsp:include page="home.jsp"></jsp:include>
 </body>
 </html>
