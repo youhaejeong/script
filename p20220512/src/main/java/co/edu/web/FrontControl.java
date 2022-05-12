@@ -23,7 +23,7 @@ public class FrontControl extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		charset = config.getInitParameter("charset");
 		list = new HashMap<String, Control>();
-		list.put("/login.do", new loginControl());
+	
 
 	}
 
