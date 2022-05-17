@@ -27,6 +27,7 @@ public class SessionServ extends HttpServlet {
 		HttpSession session = null;
 
 		session = request.getSession();
+		
 		session.setAttribute("id", id);
 		session.setAttribute("pass", pw);
 		

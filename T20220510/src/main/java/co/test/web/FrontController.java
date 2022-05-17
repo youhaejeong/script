@@ -25,15 +25,15 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 
 		enc = config.getInitParameter("encoding");
-
 		map = new HashMap<String, Controller>();
 
-		map.put("/addBook.do", new AddBookControl());
+		map.put("/addBook.do", new AddBookControl()); 
 		map.put("/listBook.do", new ListBookControl());
 		map.put("/searchBook.do", new SearchBookControl());
 		map.put("/modifyBook.do", new ModifyBookControl());
 		map.put("/removeBook.do", new RemoveBookControl());
-
+		 //페이지를 요청하면 실행할 페이지가 뭔지 맵타입에 등록 
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
